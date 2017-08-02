@@ -1,4 +1,4 @@
-require "GeoCompile/version"
+require "geo_compile/version"
 
 module GeoCompile
   

@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "GeoCompile"
+require "geo_compile"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
