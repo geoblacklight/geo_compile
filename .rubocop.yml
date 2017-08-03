@@ -1,0 +1,19 @@
+inherit_gem:
+  bixby: bixby_default.yml
+
+Style/MutableConstant:
+  Enabled: true
+  Exclude:
+    - 'lib/geo_compile/registry.rb'
+
+Style/ClassAndModuleCamelCase:
+  Enabled: true
+  Exclude:
+    - 'lib/geo_compile/format_translators/*.rb'
+
+Style/FileName:
+  Enabled: true
+  Exclude:
+    - '**/Gemfile'
+    - '**/*.rake'
+    - 'lib/geo_compile/format_translators/*.rb'

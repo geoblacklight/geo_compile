@@ -4,7 +4,6 @@ module GeoCompile
       @format = format
     end
 
-    def validate(metadata)
-    end
+    def validate(metadata); end
   end
 end
