@@ -6,7 +6,7 @@ module GeoCompile
     end
 
     def translate(metadata)
-      translator_class.translate(metadata)
+      translator_class.new.translate(metadata)
     end
 
     def translator_class
