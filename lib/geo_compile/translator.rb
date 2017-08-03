@@ -10,12 +10,12 @@ module GeoCompile
     end
 
     def translator_class
-      begin
-        Object.const_get("GeoCompile::Translators::#{@from}_to_#{@to}")
-      rescue NameError
-        raise GeoCompile::Exceptions::TranslationPathNotImplemented,
-           "Translation from: #{@from}, to: #{@to} not implemented."
+      GeoCompile::Registry::TRANSLATORS.each do |r|
+        return r[:class] if r[:from] == @from && r[:to] == @to
       end
+
+      raise GeoCompile::Exceptions::TranslationPathNotImplemented,
+            "Translation from: #{@from}, to: #{@to} not implemented."
     end
   end
 end

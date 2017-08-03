@@ -13,4 +13,4 @@ module GeoCompile
   end
 end
 
-GeoCompile::FormatTranslators.REGISTRY < GeoCompile::FormatTranslators::GBL2_0_to_SOLR2_0.registration_entry
+GeoCompile::Registry::TRANSLATORS << GeoCompile::FormatTranslators::GBL2_0_to_SOLR2_0.registration_entry

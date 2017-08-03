@@ -4,6 +4,7 @@ require 'json-schema'
 require 'sanitize'
 
 require 'geo_compile/exceptions'
+require 'geo_compile/registry'
 require 'geo_compile/translator'
 require 'geo_compile/format_translators'
 require 'geo_compile/validator'
