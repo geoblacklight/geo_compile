@@ -9,8 +9,8 @@ require 'geo_compile/translators'
 require 'geo_compile/validator'
 
 module GeoCompile
-  def self.translate(metadata, to, from)
-    translator = GeoCompile::Translator.new(to, from)
+  def self.translate(metadata, from, to)
+    translator = GeoCompile::Translator.new(from, to)
     translator.translate(metadata)
   end
 
