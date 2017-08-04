@@ -1,6 +1,5 @@
 require "bundler/setup"
 require "geo_compile"
-
 require 'coveralls'
 Coveralls.wear!
 
@@ -14,4 +13,8 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+end
+
+def fixture(file)
+  File.read(File.join(File.dirname(__FILE__), 'fixtures', file))
 end

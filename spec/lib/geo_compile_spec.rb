@@ -8,8 +8,9 @@ RSpec.describe GeoCompile do
   end
 
   describe '#validate' do
-    it 'has a validate method' do
-      expect(described_class.validate('metadata', :fgdc))
+    let(:metadata) { fixture('docs/full_geoblacklight.json') }
+    it 'has a validate method that returns an instance of a validator' do
+      expect(described_class.validate(metadata, :GBL1_0)).to be_a GeoCompile::Validator
     end
   end
 end
