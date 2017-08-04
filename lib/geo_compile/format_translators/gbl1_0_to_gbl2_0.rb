@@ -10,6 +10,21 @@ module GeoCompile
       private
 
       ##
+      # Create default download types given a web service URI (contingent on format field)
+      # @param [String, String]
+      # @return [Array<String>]
+      def downloadable_formats(dc_format_s, webservice_uri)
+        case dc_format_s
+          when "Shapefile"
+            return ["KMZ"] if webservice_uri == "http://www.opengis.net/def/serviceType/ogc/wms"
+            return ["Shapefile", "GeoJSON"] if webservice_uri == "http://www.opengis.net/def/serviceType/ogc/wfs"
+          when "GeoTIFF", "ArcGRID"
+            return ["GeoTIFF"] if webservice_uri == "http://www.opengis.net/def/serviceType/ogc/wms"
+        end
+        []
+      end
+
+      ##
       # Create dcat:distribution object for a download
       # @param [String,String,String,String,String]
       # @return [Hash]
