@@ -9,11 +9,11 @@ Style/MutableConstant:
 Style/ClassAndModuleCamelCase:
   Enabled: true
   Exclude:
-    - 'lib/geo_compile/format_translators/*.rb'
+    - 'lib/geo_compile/format_*/*.rb'
 
 Style/FileName:
   Enabled: true
   Exclude:
     - '**/Gemfile'
     - '**/*.rake'
-    - 'lib/geo_compile/format_translators/*.rb'
+    - 'lib/geo_compile/format_*/*.rb'

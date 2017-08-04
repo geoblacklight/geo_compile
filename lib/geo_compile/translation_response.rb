@@ -9,5 +9,6 @@ module GeoCompile
     def valid?
       true unless @errors.count > 0
     end
+
   end
 end

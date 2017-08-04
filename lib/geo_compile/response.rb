@@ -22,12 +22,5 @@ module GeoCompile
       @data unless @errors.count > 0
     end
 
-    private
-
-      def infer_type
-        ## Given the @authoring_class, fill out what type of
-        ## response this is (i.e., a cleaning, a validation, a
-        ## translation... )
-      end
   end
 end

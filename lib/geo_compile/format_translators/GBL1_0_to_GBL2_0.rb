@@ -8,14 +8,12 @@ module GeoCompile
       def translate(metadata)
         ## We need the guarantee that an input is valid before attempting
         ## a translation
-        @input_metadata = metadata
         @response = GeoCompile::TranslationResponse.new(GeoCompile::FormatTranslators::GBL1_0_to_GBL2_0, :GBL1_0, :GBL2_)
-        c_metadata = GeoCompile.clean(@input_metadata, :GBL1_0)
-        @response.log_error("Validation failed!") unless GeoCompile.validate(c_metadata, :GBL1_0).valid?
+        @response.log_error("Validation failed!") unless GeoCompile.validate(metadata, :GBL1_0).valid?
         return @response unless @response.valid?
 
         ## Perform actual translation
-        @response.attach_data(create_translation(c_metadata))
+        @response.attach_data(create_translation(metadata))
 
         @response
       end
