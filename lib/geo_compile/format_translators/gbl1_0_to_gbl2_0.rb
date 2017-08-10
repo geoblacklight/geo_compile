@@ -20,7 +20,8 @@ module GeoCompile
         dcat_record[:@context] = "https://raw.githubusercontent.com/geoblacklight/geoblacklight-schema/json-ld-schema/v2/schema/context.jsonld"
         dcat_record[:@id] = record.fetch('dc_identifier_s', nil)
         dcat_record[:@type] = "dcat:Dataset"
-        dcat_record[:accessLevel] = record.fetch('dc_rights_s', nil)
+        dcat_record[:accessLevel] = normalize_access_string(record.fetch('dc_rights_s', nil))
+        dcat_record[:conformsTo] = "https://raw.githubusercontent.com/geoblacklight/geoblacklight/master/schema/v2.0/geoblacklight-schema.json"
         dcat_record[:creator] = record.fetch('dc_creator_sm', nil)
         dcat_record[:description] = record.fetch('dc_description_s', nil)
         dcat_record[:distribution] = []
@@ -29,11 +30,11 @@ module GeoCompile
         dcat_record[:isPartOf] = record.fetch('dct_isPartOf_sm', nil)
         dcat_record[:issued] = record.fetch('dct_issued_s', nil)
         dcat_record[:landingPage] = nil
-        dcat_record[:language] = record.fetch('dc_language_s', nil)
+        dcat_record[:language] = normalize_language_string(record.fetch('dc_language_s', nil))
         dcat_record[:license] = nil
         dcat_record[:modified] = record.fetch('layer_modified_dt', nil)
         dcat_record[:provenance] = record.fetch('dct_provenance_s', nil)
-        dcat_record[:publisher] = record.fetch('dc_publisher_s', nil)
+        dcat_record[:publisher] = [record.fetch('dc_publisher_s', nil)]
         dcat_record[:resourceType] = record.fetch('dc_type_s', nil)
         dcat_record[:rights] = nil
         dcat_record[:slug] = record.fetch('layer_slug_s', nil)
@@ -116,7 +117,7 @@ module GeoCompile
             :@type => 'dcat:Distribution',
             conformsTo: conforms_to,
             downloadURL: value,
-            format: format,
+            format: [format],
             mediaType: media_type,
             title: title
         }.delete_if { |k,v| v.nil? }
@@ -135,6 +136,24 @@ module GeoCompile
             layerId: layer_id
         }.delete_if { |k,v| v.nil? }
       end
+
+      def normalize_access_string(access)
+        return 'public' unless access
+        case access.downcase
+          when 'public'
+            'public'
+          when 'restricted'
+            'restricted'
+          else
+            'public'
+        end
+      end
+
+      def normalize_language_string(lang)
+        return ['English'] unless lang
+        [lang]
+      end
+
     end
   end
 end
